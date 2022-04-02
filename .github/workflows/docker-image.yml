@@ -1,0 +1,25 @@
+name: Publish
+
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_TOKEN
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag docker_modmailbot:latest
+    - name: Docker push
+      run: docker push ${{secrets.DOCKER_USER}}/docker_modmailbot
