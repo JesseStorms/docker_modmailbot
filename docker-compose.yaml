@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  modmail:
+    container_name: modmail
+    image: "jessestorms/docker_modmailbot"
+    restart: unless-stopped
+    volumes:
+      - /Projects/modmailbot/config.ini:/bot/config.ini:ro #Change /Projects/... to the location of your own
+      - /Projects/modmailbot/logs:/bot/logs
+      - /Projects/modmailbot/db:/bot/db
+#everything under here is optional
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == mika
