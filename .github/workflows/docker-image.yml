@@ -17,6 +17,6 @@ jobs:
       run: |
         echo ${{secrets.DOCKER_TOKEN}} | docker login -u ${{secrets.DOCKER_USER}} --password-stdin
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag docker_modmailbot:latest
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/docker_modmailbot:latest
     - name: Docker push
       run: docker push ${{secrets.DOCKER_USER}}/docker_modmailbot
