@@ -1,0 +1,3 @@
+[submodule "modmailbot"]
+	path = modmailbot
+	url = git@github.com:Dragory/modmailbot.git
