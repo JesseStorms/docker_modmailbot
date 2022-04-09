@@ -2,6 +2,7 @@ version: '3.7'
 services:
   modmail:
     container_name: modmail
+    hostname: modmail
     image: "jessestorms/docker_modmailbot"
     restart: unless-stopped
     volumes:
