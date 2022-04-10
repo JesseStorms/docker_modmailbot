@@ -5,6 +5,8 @@ services:
     hostname: modmail
     image: "jessestorms/docker_modmailbot"
     restart: unless-stopped
+    networks:
+      - uptime_overlay
     volumes:
       - /Projects/modmailbot/config.ini:/bot/config.ini:ro #Change /Projects/... to the location of your own
       - /Projects/modmailbot/logs:/bot/logs
@@ -14,3 +16,7 @@ services:
       placement:
         constraints:
           - node.hostname == mika
+networks:
+  monitor_overlay:
+   external: true
+   name: monitor_overlay
