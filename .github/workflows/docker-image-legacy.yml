@@ -1,0 +1,22 @@
+name: Publish
+
+on:
+  push:
+    branches: legacy/*
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_TOKEN: ${{secrets.DOCKER_TOKEN}}
+      run: |
+        echo ${{secrets.DOCKER_TOKEN}} | docker login -u ${{secrets.DOCKER_USER}} --password-stdin
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/docker_modmailbot:${GITHUB_REF##*/}
+    - name: Docker push
+      run: docker push ${{secrets.DOCKER_USER}}/docker_modmailbot:${GITHUB_REF##*/}
