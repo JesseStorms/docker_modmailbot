@@ -57,3 +57,4 @@ If the same thing happens when running the bot normally; then you should probabl
 # Supported tags
 
 - [latest, 3.6.1](https://github.com/JesseStorms/docker_modmailbot/blob/main/Dockerfile)
+- [3.3.0](https://github.com/JesseStorms/docker_modmailbot/blob/legacy/3.3.0/Dockerfile)
