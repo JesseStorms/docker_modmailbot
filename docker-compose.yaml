@@ -6,7 +6,7 @@ services:
     image: "jessestorms/docker_modmailbot"
     restart: unless-stopped
     networks:
-      - uptime_overlay
+      - monitor_overlay
     volumes:
       - /Projects/modmailbot/config.ini:/bot/config.ini:ro #Change /Projects/... to the location of your own
       - /Projects/modmailbot/logs:/bot/logs
